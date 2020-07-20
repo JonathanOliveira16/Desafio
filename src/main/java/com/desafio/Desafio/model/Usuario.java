@@ -3,9 +3,14 @@ package com.desafio.Desafio.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	String nome;
+	@Id
 	int cpf;
 	char sexo;
 	Date dataNascimento;

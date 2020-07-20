@@ -11,9 +11,5 @@ import com.desafio.Desafio.model.Cargo;
 @RequestMapping(value = "/cargos")
 public class CargoResource {
 	
-	@GetMapping
-	public ResponseEntity<Cargo> findAllCargos(){
-		Cargo cg = new Cargo("teste");
-		return ResponseEntity.ok().body(cg);
-	}
+	
 }
