@@ -5,19 +5,30 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	String nome;
+	private String nome;
 	@Id
-	int cpf;
-	char sexo;
-	Date dataNascimento;
-	Cargo cargo;
-	Perfil perfil;
-	
-	public Usuario(String nome, int cpf, char sexo, Date dataNascimento, Cargo cargo, Perfil perfil) {
+	private Long cpf;
+	private char sexo;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT")
+	private Date dataNascimento;
+	@ManyToOne
+	@JoinColumn(name = "cargo_id")
+	private Cargo cargo;
+	@ManyToOne
+	@JoinColumn(name = "perfil_id")
+	private Perfil perfil;
+	@ManyToOne
+	@JoinColumn(name = "status_id")
+	private Status status;
+	public Usuario(String nome, Long cpf, char sexo, Date dataNascimento, Cargo cargo, Perfil perfil, Status status) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -25,6 +36,7 @@ public class Usuario implements Serializable {
 		this.dataNascimento = dataNascimento;
 		this.cargo = cargo;
 		this.perfil = perfil;
+		this.status = status;
 	}
 	
 	public Usuario() {
@@ -39,11 +51,11 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
@@ -70,6 +82,14 @@ public class Usuario implements Serializable {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
 	public Perfil getPerfil() {
 		return perfil;
@@ -79,27 +99,6 @@ public class Usuario implements Serializable {
 		this.perfil = perfil;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + cpf;
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (cpf != other.cpf)
-			return false;
-		return true;
-	}
-	
 	
 }

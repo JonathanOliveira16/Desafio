@@ -6,20 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.desafio.Desafio.model.Cargo;
-import com.desafio.Desafio.repositories.CargoRepository;
+import com.desafio.Desafio.model.Perfil;
+import com.desafio.Desafio.repositories.PerfilRepository;
 
 @Service
-public class CargoService {
+public class PerfilService {
 	@Autowired
-	private CargoRepository repository;
+	private PerfilRepository repository;
 	
-	public List<Cargo> findAll(){
+	public List<Perfil> findAll(){
 		return repository.findAll();
 	}
 	
-	public Cargo findById(Long id) {
-		Optional<Cargo> obj = repository.findById(id);
+	public Perfil findById(Long id) {
+		Optional<Perfil> obj = repository.findById(id);
 		return obj.get();
 	}
 }

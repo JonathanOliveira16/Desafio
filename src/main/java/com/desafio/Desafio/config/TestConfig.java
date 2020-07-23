@@ -45,10 +45,12 @@ public class TestConfig implements CommandLineRunner {
 		
 		Status s1 = new Status(null, "Ativo");
 		Status s2 = new Status(null, "Inativo");
-		//Date date = new SimpleDateFormat("dd/MM/yyyy").parse("16/10/2020");
-		//Usuario us = new Usuario(jonathan, 15612118775, m, date, cargo, perfil)
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse("16/10/2020");
+		Long cpf = 15612118775L;
+		Usuario us = new Usuario("jonathan", cpf , 'm', date, cg1, p1,s1);
 		cargoRepository.saveAll(Arrays.asList(cg1,cg2,cg3));
 		perfilRepository.saveAll(Arrays.asList(p1,p2));
 		statusRepository.saveAll(Arrays.asList(s1,s2));
+		usuarioRepository.saveAll(Arrays.asList(us));
 	}
 }

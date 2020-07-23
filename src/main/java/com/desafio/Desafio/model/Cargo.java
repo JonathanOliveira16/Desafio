@@ -1,11 +1,16 @@
 package com.desafio.Desafio.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cargo implements Serializable {
@@ -13,9 +18,11 @@ public class Cargo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	String nomeCargo;
-
+	private Long id;
+	private String nomeCargo;
+	@JsonIgnore
+	@OneToMany(mappedBy = "cargo")
+	private List<Usuario> usuarios = new ArrayList<>();
 	public Cargo() {
 		
 	}
@@ -40,6 +47,10 @@ public class Cargo implements Serializable {
 
 	public void setNomeCargo(String nomeCargo) {
 		this.nomeCargo = nomeCargo;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
 	

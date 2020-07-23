@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.desafio.Desafio.model.Cargo;
-import com.desafio.Desafio.service.CargoService;
+import com.desafio.Desafio.model.Perfil;
+import com.desafio.Desafio.service.PerfilService;
 
 @RestController
-@RequestMapping(value = "/cargos")
-public class CargoResource {
+@RequestMapping(value = "/perfis")
+public class PerfilResource {
 	
 		@Autowired
-		private CargoService service;
+		private PerfilService service;
 	
 		@GetMapping
-		public ResponseEntity<List<Cargo>> findAll(){
-			List<Cargo> list = service.findAll();
+		public ResponseEntity<List<Perfil>> findAll(){
+			List<Perfil> list = service.findAll();
 			return ResponseEntity.ok().body(list);
 		} 
 		
 		@GetMapping(value = "/{id}")
-		public ResponseEntity<Cargo> findById(@PathVariable Long id){
-			Cargo obj = service.findById(id);
+		public ResponseEntity<Perfil> findById(@PathVariable Long id){
+			Perfil obj = service.findById(id);
 			return ResponseEntity.ok().body(obj);
 		}
 }
