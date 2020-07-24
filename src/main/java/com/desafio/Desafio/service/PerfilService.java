@@ -22,4 +22,9 @@ public class PerfilService {
 		Optional<Perfil> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Perfil insert(Perfil obj) {
+		return	repository.save(obj);
+	}
+	
 }
